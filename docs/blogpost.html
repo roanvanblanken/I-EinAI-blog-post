@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+
+
+<html >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Blog Post: Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN) &#8212; Blog Post of Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN)</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'docs/blogpost';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    <p class="title logo__title">Blog Post of Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN)</p>
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    Blog Post: Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN)
+                </a>
+            </li>
+        </ul>
+        
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/roanvanblanken/I-EinAI-blog-post" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/roanvanblanken/I-EinAI-blog-post/issues/new?title=Issue%20on%20page%20%2Fdocs/blogpost.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/docs/blogpost.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Blog Post: Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Blog Post: Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#roan-van-blanken-12999350">Roan van Blanken (12999350)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-assistants-marcel-velez-vasquez-msc-c-m-pouw-msc">Teaching Assistants: Marcel Vélez Vásquez MSc &amp; C.M. Pouw MSc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-smitin">What is SMITIN?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-smitin-work">How Does SMITIN Work?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoregressive-transformer-models">Autoregressive Transformer Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inference-time-intervention-iti">Inference-Time Intervention (ITI)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-smitin">Key Features of SMITIN</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-monitoring">Self-Monitoring</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-intervention">Sparse Intervention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#soft-weighting">Soft-Weighting</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-and-results">Applications and Results</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audio-continuation">Audio Continuation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-to-music-generation">Text-to-Music Generation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="blog-post-self-monitored-inference-time-intervention-for-generative-music-transformers-smitin">
+<h1>Blog Post: Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN)<a class="headerlink" href="#blog-post-self-monitored-inference-time-intervention-for-generative-music-transformers-smitin" title="Permalink to this headline">#</a></h1>
+<section id="roan-van-blanken-12999350">
+<h2>Roan van Blanken (12999350)<a class="headerlink" href="#roan-van-blanken-12999350" title="Permalink to this headline">#</a></h2>
+<section id="teaching-assistants-marcel-velez-vasquez-msc-c-m-pouw-msc">
+<h3>Teaching Assistants: Marcel Vélez Vásquez MSc &amp; C.M. Pouw MSc<a class="headerlink" href="#teaching-assistants-marcel-velez-vasquez-msc-c-m-pouw-msc" title="Permalink to this headline">#</a></h3>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
+<p>Recent advancements in generative models have significantly impacted how we create and manipulate audio, especially in music. Musicians and audio professionals constantly seek precise control over their creations, often finding traditional generative models lacking in fine-grained adjustability. To address this gap, researchers have introduced SMITIN (Self-Monitored Inference-Time INtervention), a cutting-edge approach designed to enhance the capabilities of autoregressive generative music transformers [<span class="xref myst">1</span>, <span class="xref myst">2</span>, <span class="xref myst">3</span>, <span class="xref myst">4</span>, <span class="xref myst">5</span>, <span class="xref myst">6</span>, <span class="xref myst">7</span>]. This blog post explores how SMITIN [<span class="xref myst">8</span>] operates and its potential impact on music generation.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="what-is-smitin">
+<h1>What is SMITIN?<a class="headerlink" href="#what-is-smitin" title="Permalink to this headline">#</a></h1>
+<p>SMITIN, or Self-Monitored Inference-Time INtervention, is a approach that uses classifier probes to control the output of autoregressive generative music transformers. These probes, which are logistic regression models, are trained on the output of each attention head in the transformer [<span class="xref myst">9</span>]. By steering the attention heads based on the probes’ indications, SMITIN ensures that the generated music exhibits desired traits, such as the presence of specific instruments or the distinction between real and synthetic music.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="how-does-smitin-work">
+<h1>How Does SMITIN Work?<a class="headerlink" href="#how-does-smitin-work" title="Permalink to this headline">#</a></h1>
+<p>SMITIN integrates classifier probes into each attention head within a pre-trained music transformer model. These probes are trained to detect specific musical characteristics using a small dataset of audio examples. For instance, a probe might be trained to recognize the presence or absence of drums. During music generation, SMITIN dynamically adjusts the intervention strength based on the probes’ feedback, ensuring the music generation aligns with the desired characteristics while maintaining coherence [<span class="xref myst">2</span>].</p>
+<section id="autoregressive-transformer-models">
+<h2>Autoregressive Transformer Models<a class="headerlink" href="#autoregressive-transformer-models" title="Permalink to this headline">#</a></h2>
+<p>The foundation of SMITIN lies in autoregressive transformer models like MusicGen. These models generate sequences of audio frames by predicting the next frame based on previous ones. Each transformer layer consists of multiple self-attention heads that process the input to produce the final output [<span class="xref myst">10</span>].</p>
+</section>
+<section id="inference-time-intervention-iti">
+<h2>Inference-Time Intervention (ITI)<a class="headerlink" href="#inference-time-intervention-iti" title="Permalink to this headline">#</a></h2>
+<p>ITI is a technique where the output of the self-attention heads is modified at inference time to guide the generation process. This modification involves adding a term to the heads based on the classifier probe’s direction. The adjustment is controlled to avoid excessive intervention, which could disrupt the temporal coherence of the music [<span class="xref myst">9</span>].</p>
+<p>Figure 1 illustrates the architecture of SMITIN, showing how the classifier probes are integrated into the attention
+heads of the transformer model and how they influence the music generation process.</p>
+<div style="text-align: center;">
+    <img src="figures/SMITIN_architecture.png" alt="Figure 1 Description" style="width: 97.5%;">
+    <p>Figure 1: The overall pipeline of SMITIN for inference-time intervention on a pre-trained music generative transformer. This process enforces specific musical elements (e.g., presence of a particular instrument) during music generation. SMITIN uses a self-monitoring technique to dynamically adjust the intervention strength at each step, allowing precise control over the inclusion of the target characteristic while maintaining the musical quality of the output. </p>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="key-features-of-smitin">
+<h1>Key Features of SMITIN<a class="headerlink" href="#key-features-of-smitin" title="Permalink to this headline">#</a></h1>
+<p>SMITIN incorporates several advanced features to enhance its performance in music generation tasks. These features include self-monitoring, sparse intervention, and soft-weighting, which collectively ensure the generation of high-quality music while meeting specific desired traits.</p>
+<section id="self-monitoring">
+<h2>Self-Monitoring<a class="headerlink" href="#self-monitoring" title="Permalink to this headline">#</a></h2>
+<p>A critical innovation in SMITIN is its self-monitoring capability. The system continuously evaluates the generated
+music using the classifier probes. If the probes indicate that the desired musical trait is present, SMITIN reduces
+the intervention strength. This self-regulation helps maintain musical quality and prevents overfitting to the intervention.</p>
+</section>
+<section id="sparse-intervention">
+<h2>Sparse Intervention<a class="headerlink" href="#sparse-intervention" title="Permalink to this headline">#</a></h2>
+<p>To ensure the generated music remains coherent, SMITIN does not intervene at every time step. Instead, it applies interventions at regular intervals, allowing the music to develop naturally while still guiding it toward the desired traits.</p>
+</section>
+<section id="soft-weighting">
+<h2>Soft-Weighting<a class="headerlink" href="#soft-weighting" title="Permalink to this headline">#</a></h2>
+<p>SMITIN introduces a soft-weighting mechanism to balance the influence of different attention heads. Instead of selecting a fixed number of top-performing heads, it assigns weights based on the classifier probes’ accuracy. This ensures that the most relevant heads have a greater influence, improving the intervention’s effectiveness [<span class="xref myst">9</span>].</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="applications-and-results">
+<h1>Applications and Results<a class="headerlink" href="#applications-and-results" title="Permalink to this headline">#</a></h1>
+<p>SMITIN has been tested in both audio continuation and text-to-music generation tasks. The results demonstrate significant improvements in achieving desired musical traits without compromising the quality of the generated music.</p>
+<section id="audio-continuation">
+<h2>Audio Continuation<a class="headerlink" href="#audio-continuation" title="Permalink to this headline">#</a></h2>
+<p>In audio continuation tasks, SMITIN successfully adds specific instruments to existing music tracks. For example, starting with a track without drums, SMITIN can generate a continuation that seamlessly introduces drums. Objective evaluations show that SMITIN achieves higher success rates in adding instruments compared to baseline methods [<span class="xref myst">11</span>, <span class="xref myst">12</span>].</p>
+<p>Figure 2 illustrates the effectiveness of SMITIN in an audio continuation task. Figure 2a shows the waveform of
+the original track without drums, while Figure 2b shows the same track with drums added by SMITIN. The results
+highlight SMITIN’s ability to integrate new instruments smoothly and naturally into existing music, maintaining the
+overall quality and coherence of the track.</p>
+<div style="display: flex; justify-content: space-between;">
+  <div style="text-align: center;">
+    <audio controls>
+    <source src="figures/audio_cont_unconditioned.wav" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+    <img src="figures/audio_cont_unconditioned.png" alt="Figure 1 Description" style="width: 97.5%;">
+    <p>Figure 2a: Drum monitor for original track without drums</p>
+  </div>
+  <div style="text-align: center;">
+    <audio controls>
+    <source src="figures/audio_cont_SMITIN_add_drums.wav" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+    <img src="figures/audio_cont_SMITIN_add_drums.png" alt="Figure 2 Description" style="width: 97.5%;">
+    <p>Figure 2b: Drum monitor for track with drums added by SMITIN</p>
+  </div>
+</div>
+<p style="text-align: center;">Figure 2: Effectiveness of SMITIN in audio continuation tasks</p>
+</section>
+<section id="text-to-music-generation">
+<h2>Text-to-Music Generation<a class="headerlink" href="#text-to-music-generation" title="Permalink to this headline">#</a></h2>
+<p>For text-to-music tasks, where music is generated based on textual descriptions, SMITIN enhances the ability to control the presence of specific instruments. By combining text prompts with inference-time interventions, users can achieve more precise and nuanced control over the generated music [<span class="xref myst">13</span>].</p>
+<p>Figure 3 illustrates the effectiveness of SMITIN in a text-to-music generation task. In this example, the task is to add drums to a track described by the text prompt: ”guitarist talks, tuning notes, tuning pegs, guitar master class, guitar solo, live concert, live audience, soloist, random notes, laughing, bad audio quality, engaging crowds, performer, famous guitarist, tuning legs, fretboard sounds, no fixed tempo, bad audio quality, ambient crowd noises.” Figure 3a shows the drum monitor for the unconditioned track generated from the text prompt, while Figure 3b shows the drum monitor for the track with drums added by SMITIN. The results demonstrate SMITIN’s capability to accurately interpret and apply the text prompt to enhance the musical output with the specified instrument.</p>
+<div style="display: flex; justify-content: space-between;">
+  <div style="text-align: center;">
+    <audio controls>
+    <source src="figures/text_to_music_unconditioned.wav" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+    <img src="figures/text_to_music_unconditioned.png" alt="Figure 3a Description" style="width: 97.5%;">
+    <p>Figure 3a: Drum monitor for unconditioned track from text prompt</p>
+  </div>
+  <div style="text-align: center;">
+    <audio controls>
+    <source src="figures/text_to_music_SMITIN_add_drums.wav" type="audio/mpeg">
+    Your browser does not support the audio element.
+    </audio>
+    <img src="figures/text_to_music_SMITIN_add_drums.png" alt="Figure 3b Description" style="width: 97.5%;">
+    <p>Figure 3b: Drum monitor for track with drums added by SMITIN</p>
+  </div>
+</div>
+<p style="text-align: center;">Figure 3: Effectiveness of SMITIN in text-to-music generation tasks</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">#</a></h1>
+<p>SMITIN represents a significant advancement in the field of generative music models. By incorporating self-monitored inference-time interventions, it provides musicians and audio professionals with the tools to create more controlled and high-quality music. This approach opens up new possibilities for creative expression, allowing for dynamic and precise manipulation of musical elements.</p>
+<p>For more details and audio samples demonstrating SMITIN’s capabilities, you can visit the <a class="reference external" href="https://wide-wood-512.notion.site/SMITIN-Self-Monitored-Inference-Time-INtervention-for-Generative-Music-Transformers-Demo-Page-983723e6e9ac4f008298f3c427a23241">demo page</a>.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="references">
+<h1>References<a class="headerlink" href="#references" title="Permalink to this headline">#</a></h1>
+<ol class="arabic simple">
+<li><p>Prafulla Dhariwal, Heewoo Jun, Christine Payne, Jong Wook Kim, Alec Radford, and Ilya Sutskever. Jukebox: A generative model for music. arXiv preprint arXiv:2005.00341, 2020.</p></li>
+<li><p>Jade Copet, Felix Kreuk, Itai Gat, Tal Remez, David Kant, Gabriel Synnaeve, Yossi Adi, and Alexandre Défossez. Simple and controllable music generation. arXiv preprint arXiv:2306.05284, 2023.</p></li>
+<li><p>Haohe Liu, Qiao Tian, Yi Yuan, Xubo Liu, Xinhao Mei, Qiuqiang Kong, Yuping Wang, Wenwu Wang, Yuxuan Wang, and Mark D Plumbley. AudioLDM 2: Learning holistic audio generation with self-supervised pretraining. arXiv preprint arXiv:2308.05734, 2023.</p></li>
+<li><p>Shih-Lun Wu, Chris Donahue, Shinji Watanabe, and Nicholas J Bryan. Music controlnet: Multiple time-varying controls for music generation. arXiv preprint arXiv:2311.07069, 2023.</p></li>
+<li><p>Hugo F Flores Garcia, Prem Seetharaman, Rithesh Kumar, and Bryan Pardo. VampNet: Music generation via masked acoustic token modeling. 2023.</p></li>
+<li><p>Felix Kreuk, Gabriel Synnaeve, Adam Polyak, Uriel Singer, Alexandre Défossez, Jade Copet, Devi Parikh, Yaniv Taigman, and Yossi Adi. Audiogen: Textually guided audio generation. 2022.</p></li>
+<li><p>Zalán Borsos, Raphaël Marinier, Damien Vincent, Eugene Kharitonov, Olivier Pietquin, Matt Sharifi, Dominik Roblek, Olivier Teboul, David Grangier, Marco Tagliasacchi, et al. Audiolm: a language modeling approach to audio generation. 2023.</p></li>
+<li><p>Junghyun Koo, Gordon Wichern, Francois G. Germain, Sameer Khurana, and Jonathan Le Roux. Smitin: Self-monitored inference-time intervention for generative music transformers, 2024.</p></li>
+<li><p>Kenneth Li, Oam Patel, Fernanda Viégas, Hanspeter Pfister, and Martin Wattenberg. Inference-time intervention: Eliciting truthful answers from a language model. arXiv preprint arXiv:2306.03341, 2023.</p></li>
+<li><p>Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones, Aidan N Gomez, Lukasz Kaiser, and Illia Polosukhin. Attention is all you need. volume 30, 2017.</p></li>
+<li><p>Zafar Rafii, Antoine Liutkus, Fabian-Robert Stöter, Stylianos Ioannis Mimilakis, and Rachel Bittner. MUSDB18-HQ - an uncompressed version of MUSDB18, August 2019.</p></li>
+<li><p>Igor Pereira, Felipe Araújo, Filip Korzeniowski, and Richard Vogl. MoisesDB: A dataset for source separation beyond 4-stems. arXiv preprint arXiv:2307.15913, 2023.</p></li>
+<li><p>Andrea Agostinelli, Timo I Denk, Zalán Borsos, Jesse Engel, Mauro Verzetti, Antoine Caillon, Qingqing Huang, Aren Jansen, Adam Roberts, Marco Tagliasacchi, et al. Musiclm: Generating music from text. arXiv preprint arXiv:2301.11325, October 2023.</p></li>
+</ol>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./docs"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Blog Post: Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#roan-van-blanken-12999350">Roan van Blanken (12999350)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-assistants-marcel-velez-vasquez-msc-c-m-pouw-msc">Teaching Assistants: Marcel Vélez Vásquez MSc &amp; C.M. Pouw MSc</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-smitin">What is SMITIN?</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#how-does-smitin-work">How Does SMITIN Work?</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#autoregressive-transformer-models">Autoregressive Transformer Models</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inference-time-intervention-iti">Inference-Time Intervention (ITI)</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features-of-smitin">Key Features of SMITIN</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-monitoring">Self-Monitoring</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-intervention">Sparse Intervention</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#soft-weighting">Soft-Weighting</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-and-results">Applications and Results</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audio-continuation">Audio Continuation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#text-to-music-generation">Text-to-Music Generation</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Roan van Blanken
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
