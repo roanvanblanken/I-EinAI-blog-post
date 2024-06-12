@@ -1,3 +1,3 @@
-# jupyter-book-template
+# Blog Post of Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN)
 
-This repository hosts the tutorial and template code for building a basic Jupyter Book website.
+This repository hosts a blog post of the paper: Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN).

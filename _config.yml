@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Blog Post of Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN) # Change this to your book title.
-author: Roan van Blanken # Change this to your name (or your team/organization name).
+title: Blog Post of Self-Monitored Inference-Time Intervention for Generative Music Transformers (SMITIN)
+author: Roan van Blanken
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -14,29 +14,18 @@ latex:
   latex_documents:
     targetname: book.tex
 
+# Add a bibtex file so that we can create citations
+bibtex_bibfiles:
+  - references.bib
+
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/roanvanblanken/I-EinAI-blog-post  # Online location of your book (change this to your GitHub repository link)
+  url: https://github.com/executablebooks/jupyter-book  # Online location of your book
   path_to_book: docs  # Optional path to your book, relative to the repository root
-  branch: main  # Which branch of the repository should be used when creating links (optional)
+  branch: master  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
 # See https://jupyterbook.org/customize/config.html#add-a-link-to-your-repository
 html:
   use_issues_button: true
   use_repository_button: true
-
-# Add launch buttons
-launch_buttons:
-  binderhub_url: ""
-  colab_url: "https://colab.research.google.com"
-  jupyterhub_url: ""
-
-sphinx:
-  extra_extensions:
-    # This is to work around the bug of no syntax highlighting
-    - "IPython.sphinxext.ipython_console_highlighting"
-  config:
-    html_js_files:
-      # This is for plotly to work
-      - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
